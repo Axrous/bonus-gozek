@@ -62,3 +62,4 @@ function akhirBonus(hasil) {
     return akhir;
 }
 
+console.log("oke mantap");
