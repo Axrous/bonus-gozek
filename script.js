@@ -18,7 +18,7 @@ const getData = button.addEventListener("click", () => {
     let point2 = hitungPoin(getSpecData(minggu2))[0];
     document.querySelector(".point2").innerHTML = `Minggu 2 : ${point2}`;
     
-    let hasil2 = akhirBonus(hitungPoin(getSpecData(minggu1))[1]);
+    let hasil2 = akhirBonus(hitungPoin(getSpecData(minggu2))[1]);
     document.querySelector(".hasil2").innerHTML = `Minggu 2 : ${hasil2}`;
 })
 
