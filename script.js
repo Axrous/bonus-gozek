@@ -10,15 +10,15 @@ const getData = button.addEventListener("click", () => {
     let point1 = hitungPoin(getSpecData(minggu1))[0];
     document.querySelector(".point1").innerHTML = `Minggu 1 : ${point1}`;
     
-    let hasil1 = akhirBonus(hitungPoin(getSpecData(minggu1))[1]);
+    let hasil1 = hitungPoin(getSpecData(minggu1))[1];
     document.querySelector(".hasil1").innerHTML = `Minggu 1 : ${hasil1}`;
 
-    //mengambil rata" point minggu 1 & menampilkan hari mendapatkan poin
+    //mengambil rata" point minggu 2 & menampilkan hari mendapatkan poin
     let minggu2 = document.querySelectorAll(".poin2");
     let point2 = hitungPoin(getSpecData(minggu2))[0];
     document.querySelector(".point2").innerHTML = `Minggu 2 : ${point2}`;
     
-    let hasil2 = akhirBonus(hitungPoin(getSpecData(minggu2))[1]);
+    let hasil2 = hitungPoin(getSpecData(minggu2))[1];
     document.querySelector(".hasil2").innerHTML = `Minggu 2 : ${hasil2}`;
 })
 
@@ -42,24 +42,27 @@ function hitungPoin(poin) {
     let sum = poin.reduce((acc, current) => {
         return acc + current;
     })
-    let rataPoint = sum/5;
 
-    let found = poin.reduce((acc, curr, index) => {
-        if(curr >= Math.floor(rataPoint)) {
-            acc.push(index);
-        }
-        return acc;
-    }, []);
+    if(sum === 0) {
+        return ["Tidak mendapatkan point", "Tidak mendapatkan bonus"]
+    } else {
+        let rataPoint = sum/5;
 
-    return [rataPoint, found];
-}
+        let found = poin.reduce((acc, curr, index) => {
+            if(curr >= Math.floor(rataPoint)) {
+                acc.push(index);
+            }
+            return acc;
+        }, []);
+        let akhir = []
+        for(let i=0;i<found.length;i++) {
+            akhir.push(days[found[i]]);
+        };
+        return [rataPoint, akhir];
+    }
 
-function akhirBonus(hasil) {
-    let akhir = []
-    for(let i=0;i<hasil.length;i++) {
-        akhir.push(days[hasil[i]]);
-    };
-    return akhir;
-}
+    }
+    
 
-console.log("oke mantap");
+
+
